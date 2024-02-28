@@ -35,7 +35,10 @@ export class MongoClientConnection {
     const res = await this.userData.findOne({ username });
     return res;
   }
-
+  async getAllUser() {
+    const res = await this.userData.find({}).toArray();
+    return res;
+  }
   async getUserByEmail(email) {
     // console.log({ email });
     return new Promise((resolve, reject) => {

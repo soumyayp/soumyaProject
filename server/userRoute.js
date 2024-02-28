@@ -1,7 +1,6 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import { mongoClient } from './index.js';
-// import { mongoClient } from '../../index.js';
 
 const userRouter = express.Router();
 
@@ -13,6 +12,11 @@ userRouter.post('/newUser', async (req, res) => {
   console.log(data);
   mongoClient.addUser(data);
   res.send({ message: 'Added new User' });
+});
+
+userRouter.get('/all', async (req, res) => {
+  const data = await mongoClient.getAllUser();
+  res.send(data);
 });
 
 userRouter.post('/login', async (req, res) => {
